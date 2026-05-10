@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para una persona verdaderamente mágica...</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Great+Vibes&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'hp-gold': '#D4AF37',
+                        'hp-gold-light': '#F3E5AB',
+                        'hp-dark': '#0B0C10',
+                        'hp-blue': '#0A1128',
+                        'hp-red': '#740001',
+                    },
+                    fontFamily: {
+                        'cinzel': ['"Cinzel Decorative"', 'serif'],
+                        'garamond': ['"Cormorant Garamond"', 'serif'],
+                        'vibes': ['"Great Vibes"', 'cursive'],
+                        'news': ['"Playfair Display"', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #050508;
+            color: #F3E5AB;
+            overflow-x: hidden;
+            font-family: 'Cormorant Garamond', serif;
+            scroll-behavior: smooth;
+        }
+
+        /* Magical Wand Cursor */
+        body, a, button {
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24' fill='none' stroke='%23D4AF37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 4V2'/%3E%3Cpath d='M15 16v-2'/%3E%3Cpath d='M8 9h2'/%3E%3Cpath d='M20 9h2'/%3E%3Cpath d='M17.8 11.8l1.4 1.4'/%3E%3Cpath d='M10.8 4.8l1.4 1.4'/%3E%3Cpath d='M17.8 6.2l1.4-1.4'/%3E%3Cpath d='M10.8 13.2l1.4-1.4'/%3E%3Cpath d='m3 21 9-9'/%3E%3Cpath d='M12.2 6.2 10.8 4.8'/%3E%3C/svg%3E") 0 0, auto;
+        }
+
+        /* Entrance Overlay */
+        #entrance-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, #1a1a2e 0%, #000000 100%);
+            z-index: 50;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 2s ease-in-out;
+        }
+
+        .envelope {
+            width: 300px;
+            height: 200px;
+            background: #d4c4a8;
+            position: relative;
+            border-radius: 5px;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .envelope:hover {
+            transform: scale(1.05) translateY(-10px);
+            box-shadow: 0 0 60px rgba(212, 175, 55, 0.6);
+        }
+
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            border-top: 100px solid #c3b091;
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            z-index: 2;
+        }
+
+        .wax-seal {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px; height: 50px;
+            background: #740001;
+            border-radius: 50%;
+            z-index: 3;
+            box-shadow: inset 0 0 10px #4a0000, 0 5px 10px rgba(0,0,0,0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #d4af37;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        /* Starry Night & Floating Candles */
+        #sky {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+        }
+
+        .star {
+            position: absolute;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.2; transform: scale(0.8); box-shadow: 0 0 2px white; }
+            100% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 10px #D4AF37; }
+        }
+
+        .candle {
+            position: absolute;
+            width: 15px;
+            height: 40px;
+            background: #fdfbf7;
+            border-radius: 2px;
+            box-shadow: inset -2px 0 5px rgba(0,0,0,0.1);
+            animation: floatCandle infinite alternate ease-in-out;
+        }
+
+        .flame {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 15px;
+            background: radial-gradient(ellipse at bottom, #fff 10%, #fbd786 40%, #f7797d 80%, transparent 100%);
+            border-radius: 50% 50% 20% 20%;
+            box-shadow: 0 0 15px #fbd786, 0 0 30px #f7797d;
+            animation: flicker 0.1s infinite alternate;
+        }
+
+        @keyframes floatCandle {
+            0% { transform: translateY(0px) rotate(-2deg); }
+            100% { transform: translateY(-30px) rotate(2deg); }
+        }
+
+        @keyframes flicker {
+            0% { transform: translateX(-50%) scale(1); opacity: 0.9; }
+            100% { transform: translateX(-50%) scale(1.1); opacity: 1; }
+        }
+
+        /* Magic Photocards */
+        .card-container {
+            perspective: 1000px;
+        }
+
+        .magic-card {
+            width: 100%;
+            height: 180px;
+            position: relative;
+            transform-style: preserve-3d;
+            transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: inherit;
+        }
+
+        .card-container:hover .magic-card {
+            transform: rotateY(180deg) translateY(-10px);
+        }
+
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 1rem;
+            border: 2px solid #D4AF37;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5), inset 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+
+        .card-front {
+            background: linear-gradient(135deg, #0A1128 0%, #050508 100%);
+            background-image: url('data:image/svg+xml;utf8,<svg width="20" height="20" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><circle cx="2" cy="2" r="1" fill="rgba(212,175,55,0.1)"/></svg>');
+        }
+
+        .card-back {
+            background: linear-gradient(135deg, #1a0f00 0%, #2a1b00 100%);
+            transform: rotateY(180deg);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4), inset 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        .card-corner {
+            position: absolute;
+            width: 20px; height: 20px;
+            border: 1px solid #D4AF37;
+        }
+        .tl { top: 5px; left: 5px; border-right: none; border-bottom: none; }
+        .tr { top: 5px; right: 5px; border-left: none; border-bottom: none; }
+        .bl { bottom: 5px; left: 5px; border-right: none; border-top: none; }
+        .br { bottom: 5px; right: 5px; border-left: none; border-top: none; }
+
+        /* Parchment General */
+        .parchment {
+            background-color: #f4e8d1;
+            background-image: url('https://www.transparenttextures.com/patterns/aged-paper.png');
+            color: #2c1e16;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8), inset 0 0 50px rgba(139, 69, 19, 0.3);
+            position: relative;
+        }
+        
+        .parchment::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            box-shadow: inset 0 0 30px rgba(0,0,0,0.5);
+            pointer-events: none;
+            border-radius: inherit;
+        }
+
+        /* The Daily Prophet Styles (ULTIMATE NEWSPAPER LOOK) */
+        .prophet-paper {
+            background-color: #d1c9b8; /* Darker, more authentic old newsprint */
+            background-image: url('https://www.transparenttextures.com/patterns/old-wall.png'), linear-gradient(to bottom, rgba(209, 201, 184, 0.9), rgba(190, 180, 160, 0.9));
+            color: #1a1a1a;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.9), inset 0 0 80px rgba(0,0,0,0.3);
+            position: relative;
+            font-family: 'Playfair Display', serif;
+            border: 1px solid #8c7e6c;
+            padding: 2rem 2rem 4rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: justify;
+            overflow: hidden;
+        }
+
+        /* Ragged edges effect */
+        .prophet-paper::after {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            box-shadow: inset 0 0 40px #8c7e6c;
+            pointer-events: none;
+            z-index: 5;
+        }
+        
+        .prophet-header {
+            border-bottom: 6px double #1a1a1a;
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .prophet-title {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            letter-spacing: -2px;
+            text-transform: uppercase;
+            margin-bottom: 0.2rem;
+            line-height: 0.9;
+            color: #050505;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+        }
+        
+        @media (min-width: 768px) {
+            .prophet-title { font-size: 6.5rem; }
+        }
+
+        .prophet-subtitle {
+            font-size: 0.8rem;
+            font-family: 'Times New Roman', Times, serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-top: 2px solid #1a1a1a;
+            border-bottom: 2px solid #1a1a1a;
+            padding: 6px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .prophet-main-headline {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            line-height: 1;
+            font-weight: 900;
+            text-align: center;
+            margin: 1.5rem 0 1rem 0;
+            color: #000;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+        
+        .prophet-sub-headline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            font-style: italic;
+            display: block;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #2a1b00;
+            border-bottom: 1px solid #1a1a1a;
+            padding-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .prophet-sub-headline::after {
+            content: '✧';
+            position: absolute;
+            bottom: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #d1c9b8;
+            padding: 0 10px;
+            font-size: 1.2rem;
+        }
+
+        @media (min-width: 768px) {
+            .prophet-main-headline { font-size: 4.5rem; }
+            .prophet-sub-headline { font-size: 2.2rem; }
+        }
+
+        /* Newspaper Grid Layout */
+        .prophet-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        @media (min-width: 860px) {
+            .prophet-grid {
+                grid-template-columns: 1fr 2fr 1fr; /* Left col, Main center col, Right col */
+            }
+            .border-right-news {
+                border-right: 1px solid #1a1a1a;
+                padding-right: 1.5rem;
+            }
+            .border-left-news {
+                padding-left: 0.5rem;
+            }
+        }
+
+        .prophet-text {
+            font-size: 1.05rem;
+            line-height: 1.35;
+            color: #111;
+        }
+
+        .prophet-text p {
+            margin-bottom: 1.2rem;
+            text-align: justify;
+        }
+        
+        /* Drop cap for the first letter of the article */
+        .drop-cap::first-letter {
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 4.5rem;
+            float: left;
+            margin-top: 4px;
+            margin-right: 8px;
+            margin-bottom: -10px;
+            line-height: 0.8;
+            color: #1a1a1a;
+            font-weight: bold;
+        }
+
+        /* Newspaper Photo styling */
+        .prophet-photo-frame {
+            border: 4px solid #1a1a1a;
+            padding: 5px;
+            background: #e8dcc4;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 3px 3px 0 rgba(0,0,0,0.7);
+            overflow: hidden;
+        }
+        
+        .main-photo-frame {
+            margin-bottom: 1.5rem;
+            width: 100%;
+        }
+
+        .side-photo-frame {
+            width: 100%;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .prophet-photo {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            display: block;
+            /* SEPIA & GRAIN FILTER FOR NEWSPAPER LOOK */
+            filter: sepia(0.6) grayscale(0.7) contrast(1.3) brightness(0.9);
+            /* Magical breathing animation */
+            animation: magicalMove 6s ease-in-out infinite alternate;
+            transform-origin: center;
+        }
+
+        .main-photo { aspect-ratio: 4/5; }
+        .side-photo { aspect-ratio: 1/1; }
+
+        @keyframes magicalMove {
+            0% { filter: sepia(0.6) grayscale(0.7) contrast(1.3) brightness(0.9); transform: scale(1); }
+            50% { filter: sepia(0.7) grayscale(0.6) contrast(1.4) brightness(0.95); transform: scale(1.03) rotate(0.5deg); }
+            100% { filter: sepia(0.5) grayscale(0.8) contrast(1.2) brightness(0.85); transform: scale(1.01) rotate(-0.5deg); }
+        }
+
+        .photo-caption {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 0.85rem;
+            font-style: italic;
+            text-align: center;
+            padding: 6px 4px;
+            border-top: 1px solid #1a1a1a;
+            margin-top: 5px;
+            background: #d1c9b8;
+            line-height: 1.2;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .quote-box {
+            border-top: 2px solid #1a1a1a;
+            border-bottom: 2px solid #1a1a1a;
+            padding: 15px 0;
+            margin: 20px 0;
+            font-size: 1.3rem;
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        /* LUMOS BUTTON - ENHANCED */
+        .lumos-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .lumos-aura {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: 120%; height: 150%;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.6) 0%, rgba(212, 175, 55, 0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            animation: pulseAura 2s infinite alternate;
+            pointer-events: none;
+        }
+
+        .lumos-instruction {
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: max-content;
+            font-family: 'Cinzel Decorative', serif;
+            color: #F3E5AB;
+            font-size: 1.2rem;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.8);
+            animation: floatText 2s infinite alternate;
+            pointer-events: none;
+        }
+
+        @keyframes pulseAura {
+            0% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.5; }
+            100% { transform: translate(-50%, -50%) scale(1.3); opacity: 1; }
+        }
+        @keyframes floatText {
+            0% { transform: translateX(-50%) translateY(0); }
+            100% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .glow-text {
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.8), 0 0 20px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Mirror Section Styles */
+        .mirror-frame {
+            border: 8px solid #b8860b;
+            border-radius: 20px 20px 0 0;
+            padding: 2px;
+            background: linear-gradient(135deg, #ffd700 0%, #b8860b 50%, #ffd700 100%);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.4), inset 0 0 15px rgba(0,0,0,0.8);
+            position: relative;
+        }
+        
+        .mirror-frame::before {
+            content: 'Erised stra ehru oyt ube cafru oyt on wohsi';
+            position: absolute;
+            top: 10px;
+            width: 100%;
+            text-align: center;
+            font-family: 'Cinzel Decorative', serif;
+            font-size: 14px;
+            color: #4a3600;
+            z-index: 10;
+        }
+
+        /* Time Turner Styles */
+        .time-turner-container {
+            position: relative;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 2rem auto;
+            perspective: 1000px;
+        }
+        .tt-ring {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border-radius: 50%;
+            border: 4px solid #D4AF37;
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.5), inset 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+        .tt-ring-1 { animation: spin 10s linear infinite; }
+        .tt-ring-2 { width: 80%; height: 80%; top: 10%; left: 10%; animation: spin-reverse 8s linear infinite; border-width: 3px; }
+        .tt-ring-3 { width: 60%; height: 60%; top: 20%; left: 20%; display: flex; justify-content: center; align-items: center; border-width: 2px; background: rgba(0,0,0,0.4); }
+        
+        @keyframes spin { 100% { transform: rotateY(360deg) rotateX(180deg); } }
+        @keyframes spin-reverse { 100% { transform: rotateY(-360deg) rotateX(-180deg); } }
+
+        /* Marauder's Map Styles */
+        .map-parchment {
+            background-color: #e8dcc4;
+            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+            color: #4a1c1c;
+            border: 2px solid #8b5a2b;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+        .map-parchment::before {
+            content: '';
+            position: absolute;
+            left: 10px; top: 10px; right: 10px; bottom: 10px;
+            border: 1px solid rgba(139, 90, 43, 0.3);
+            pointer-events: none;
+        }
+        .footprints {
+            position: absolute;
+            color: #740001;
+            opacity: 0;
+            font-size: 1.2rem;
+            animation: appearFootprint 6s infinite;
+        }
+        @keyframes appearFootprint {
+            0% { opacity: 0; transform: scale(0.8); }
+            10% { opacity: 0.8; transform: scale(1); }
+            40% { opacity: 0.8; }
+            50% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        /* Patronus / Lumos effect */
+        #lumos-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.9) 0%, rgba(135,206,250,0.5) 40%, transparent 100%);
+            z-index: 40;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 2s ease-in-out;
+            mix-blend-mode: screen;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-hp-gold selection:text-hp-dark min-h-screen flex flex-col relative">
+
+    <!-- Botón disimulado de descarga (fijo) -->
+    <button onclick="downloadHTML()" class="fixed bottom-4 right-4 z-[100] opacity-[0.05] hover:opacity-50 transition-opacity duration-500 text-hp-gold text-lg" title="Guardar recuerdo">
+        <i class="fas fa-download"></i>
+    </button>
+
+    <!-- Audio Element -->
+    <audio id="magic-audio" loop>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-magical-dream-scape-443.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Sky Background -->
+    <div id="sky"></div>
+
+    <!-- Entrance Screen -->
+    <div id="entrance-overlay">
+        <h1 class="text-hp-gold font-cinzel text-2xl md:text-4xl mb-12 text-center px-4 animate-pulse">
+            Una lechuza ha dejado algo para ti...
+        </h1>
+        <div class="envelope" onclick="openMagic()">
+            <div class="wax-seal">J</div>
+        </div>
+        <p class="text-hp-gold-light mt-8 font-garamond text-xl italic opacity-75">Haz clic en el sello para abrir</p>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main-content" class="hidden opacity-0 w-full max-w-7xl mx-auto px-4 py-12 flex-grow z-10 relative">
+        
+        <!-- Lumos Effect -->
+        <div id="lumos-overlay"></div>
+
+        <!-- Header -->
+        <header class="text-center mb-20 slide-up pt-10">
+            <div class="flex justify-center items-center space-x-4 mb-4">
+                <i class="fas fa-star text-hp-gold text-sm"></i>
+                <i class="fas fa-bolt text-hp-gold text-xl"></i>
+                <i class="fas fa-star text-hp-gold text-sm"></i>
+            </div>
+            <h1 class="text-4xl md:text-6xl font-cinzel text-hp-gold font-bold mb-4 glow-text uppercase tracking-widest">
+                Feliz Cumpleaños
+            </h1>
+            <p class="text-2xl md:text-4xl font-vibes text-hp-gold-light mt-4">A una persona verdaderamente mágica</p>
+            <p class="mt-6 text-lg md:text-xl font-garamond max-w-2xl mx-auto text-gray-300 italic leading-relaxed">
+                "El mundo no se divide en gente buena y mortífagos... El mundo se divide en personas comunes, y luego estás tú, que haces que cada día sea extraordinario."
+            </p>
+        </header>
+
+        <!-- Photocards Section (Qualities) -->
+        <section class="mb-32">
+            <div class="text-center mb-12 slide-up" style="animation-delay: 0.2s;">
+                <h2 class="text-3xl font-cinzel text-hp-gold border-b border-hp-gold inline-block pb-2">El Pensadero de tus Cualidades</h2>
+                <p class="mt-4 text-xl font-garamond text-gray-300">Pasa el cursor (o toca) cada carta para revelar los encantos que te hacen única.</p>
+            </div>
+
+            <!-- Grid of 36 Qualities -->
+            <div id="photocards-grid" class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+                <!-- Cards injected by JS -->
+            </div>
+        </section>
+
+        <!-- Owl Post Notes Section -->
+        <section class="mb-32">
+            <div class="text-center mb-12 slide-up" style="animation-delay: 0.4s;">
+                <h2 class="text-3xl font-cinzel text-hp-gold border-b border-hp-gold inline-block pb-2">Mensajes por Lechuza</h2>
+                <p class="mt-4 text-xl font-garamond text-gray-300">Pequeños pergaminos recordándote lo importante que eres para mí.</p>
+            </div>
+
+            <!-- Masonry-like Grid for Notes -->
+            <div id="notes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4">
+                <!-- Notes injected by JS -->
+            </div>
+        </section>
+
+        <!-- The Mirror of Erised (Beauty focus) -->
+        <section class="mb-32 max-w-4xl mx-auto slide-up" style="animation-delay: 0.6s;">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-cinzel text-hp-gold border-b border-hp-gold inline-block pb-2">El Espejo de la Verdad</h2>
+                <p class="mt-4 text-xl font-garamond text-gray-300">"El Espejo de Oesed muestra el deseo más profundo del corazón... pero si tú te miraras en él, solo reflejaría exactamente lo que ya eres."</p>
+            </div>
+
+            <div class="mirror-frame pt-12 pb-6 px-6 bg-hp-blue relative rounded-t-[100px] mt-8 pulse-glow">
+                <div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 pointer-events-none rounded-t-[90px]"></div>
+                
+                <div class="parchment p-8 md:p-12 rounded-lg text-center relative z-10 mx-auto max-w-2xl transform transition-transform duration-500 hover:scale-105">
+                    <div class="text-hp-red opacity-80 text-3xl mb-4"><i class="fas fa-sparkles"></i></div>
+                    
+                    <p class="font-garamond text-2xl md:text-3xl text-gray-800 leading-relaxed italic mb-8">
+                        Para ti...
+                    </p>
+                    
+                    <h3 class="font-vibes text-3xl md:text-5xl text-hp-red mb-6 leading-tight">
+                        Contigo la palabra "bonita" se queda corta.
+                    </h3>
+                    
+                    <p class="font-garamond text-xl md:text-2xl text-gray-800 leading-loose mb-8">
+                        Tú eres <strong>hermosa</strong>, <strong>preciosa</strong>, <strong>linda</strong>, <strong>guapa</strong>, <strong>bella</strong>, <strong>deslumbrante</strong>, <strong>radiante</strong>, <strong>espectacular</strong> y <strong>eternamente bella</strong>. Eres una <strong>reina</strong>, <strong>alteza</strong>, <strong>su majestad</strong>.<br><br>
+                        A veces creo que hasta la poción Embellecedora sentiría envidia de tu brillo natural. Tienes una belleza que no solo se ve, sino que se siente cuando estás cerca.
+                    </p>
+                    
+                    <p class="font-cinzel font-bold text-xl md:text-2xl text-hp-red border-t-2 border-hp-red/20 pt-6">
+                        Te quiero eones <i class="fas fa-heart text-red-600 ml-2 animate-pulse"></i>
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- El Giratiempo -->
+        <section class="mb-32 max-w-3xl mx-auto slide-up" style="animation-delay: 0.8s;">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-cinzel text-hp-gold border-b border-hp-gold inline-block pb-2">El Giratiempo</h2>
+                <p class="mt-4 text-xl font-garamond text-gray-300">Sobre el valor de los momentos compartidos.</p>
+            </div>
+
+            <div class="bg-[#111] border border-[#D4AF37]/30 p-10 rounded-3xl shadow-[0_0_30px_rgba(212,175,55,0.1)] text-center relative overflow-hidden">
+                <div class="time-turner-container">
+                    <div class="tt-ring tt-ring-1"></div>
+                    <div class="tt-ring tt-ring-2"></div>
+                    <div class="tt-ring tt-ring-3">
+                        <i class="fas fa-hourglass-half text-hp-gold text-3xl"></i>
+                    </div>
+                </div>
+
+                <h3 class="font-cinzel text-2xl text-hp-gold-light mb-6">Mis vueltas en el tiempo</h3>
+                <p class="font-garamond text-xl md:text-2xl text-gray-300 leading-relaxed italic">
+                    Dicen que el tiempo es un misterio y que es peligroso jugar con él. Pero te confieso algo: si yo tuviera un Giratiempo entre mis manos, jamás lo usaría para cambiar el pasado o viajar a otra época. 
+                    <br><br>
+                    Lo usaría única y exclusivamente para <strong>revivir</strong>. Daría un par de vueltas para volver a escuchar tu risa, para repetir esas charlas profundas en la madrugada donde el mundo parece detenerse, y para experimentar de nuevo la alegría de tu compañía. Porque cada segundo que paso contigo vale oro, y si de algo estoy seguro, es que elegiría pasar mi tiempo contigo una y mil veces más.
+                </p>
+            </div>
+        </section>
+
+        <!-- El Mapa del Merodeador -->
+        <section class="mb-32 max-w-4xl mx-auto slide-up" style="animation-delay: 1.0s;">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-cinzel text-hp-gold border-b border-hp-gold inline-block pb-2">El Mapa de tus Pasos</h2>
+                <p class="mt-4 text-xl font-garamond text-gray-300">Las huellas que dejas a tu paso.</p>
+            </div>
+
+            <div class="map-parchment p-8 md:p-12 rounded-lg text-center relative min-h-[400px] flex flex-col justify-center items-center">
+                <div class="footprints" style="top: 15%; left: 15%; animation-delay: 0s; transform: rotate(45deg);"><i class="fas fa-shoe-prints"></i></div>
+                <div class="footprints" style="top: 25%; left: 25%; animation-delay: 1s; transform: rotate(45deg);"><i class="fas fa-shoe-prints"></i></div>
+                <div class="footprints" style="top: 35%; left: 35%; animation-delay: 2s; transform: rotate(45deg);"><i class="fas fa-shoe-prints"></i></div>
+                
+                <div class="footprints" style="bottom: 30%; right: 35%; animation-delay: 3s; transform: rotate(-45deg);"><i class="fas fa-shoe-prints"></i></div>
+                <div class="footprints" style="bottom: 20%; right: 25%; animation-delay: 4s; transform: rotate(-45deg);"><i class="fas fa-shoe-prints"></i></div>
+                <div class="footprints" style="bottom: 10%; right: 15%; animation-delay: 5s; transform: rotate(-45deg);"><i class="fas fa-shoe-prints"></i></div>
+
+                <h3 class="font-cinzel text-2xl md:text-3xl text-[#740001] mb-6 font-bold z-10">Juro solemnemente que...</h3>
+                
+                <p class="font-garamond text-xl md:text-2xl text-[#4a1c1c] leading-loose max-w-2xl z-10 font-semibold bg-white/40 p-6 rounded-xl backdrop-blur-sm">
+                    ...me hace inmensamente feliz que estés en mi vida. En el inmenso mapa de este mundo, lleno de pasillos secretos y caminos cruzados, doy gracias de que nuestros pasos hayan coincidido. 
+                    <br><br>
+                    Al igual que la magia de este mapa, dejas una huella clara e imborrable en las personas que tienen la inmensa suerte de conocerte. Tu autenticidad ilumina cada lugar por el que caminas. Te admiro muchísimo, y solo espero poder seguir compartiendo rutas, descubriendo secretos y caminando a tu lado.
+                </p>
+                
+                <p class="font-vibes text-4xl text-[#740001] mt-8 z-10">
+                    Travesura Realizada
+                </p>
+            </div>
+        </section>
+
+        <!-- THE DAILY PROPHET (ULTIMATE REDESIGN) -->
+        <section class="mb-40 slide-up" style="animation-delay: 1.2s;">
+            <div class="prophet-paper">
+                
+                <!-- Cabecera del Periódico -->
+                <div class="prophet-header">
+                    <h2 class="prophet-title">El Profeta</h2>
+                    <div class="prophet-subtitle">
+                        <span>Edición Especial de Cumpleaños</span>
+                        <span>Reino Unido, El Callejón Diagon</span>
+                        <span>Precio: 1 Knut</span>
+                    </div>
+                </div>
+
+                <!-- Titulares -->
+                <h1 class="prophet-main-headline">
+                    ¡FENÓMENO MÁGICO INEXPLICABLE!
+                </h1>
+                <span class="prophet-sub-headline">El Ministerio confirma el hallazgo de una energía que ilumina y mejora el día de cualquiera que se acerque.</span>
+
+                <!-- Layout Asimétrico de 3 Columnas -->
+                <div class="prophet-grid">
+                    
+                    <!-- Columna Izquierda (Texto intro + Foto secundaria 1) -->
+                    <div class="border-right-news prophet-text">
+                        <p class="drop-cap">
+                            El Departamento de Misterios del Ministerio de Magia ha emitido una alerta de máxima alegría. Expertos inefables aseguran haber detectado a una persona cuya sola presencia genera un campo de energía inigualable.
+                        </p>
+                        <p>
+                            Testigos afirman que pasar tiempo con ella equivale a la cálida sensación de consumir chocolate de Honeydukes tras un mal día. "No habíamos visto nada igual en siglos," declaró un medimago de San Mungo.
+                        </p>
+                        
+                        <!-- Foto Complementaria 1 -->
+                        <div class="prophet-photo-frame side-photo-frame mt-6">
+                            <img src="https://i.postimg.cc/gJY9GYXS/Whats-App-Image-2026-05-10-at-12-39-40-PM.jpg" alt="Aura captada" class="prophet-photo side-photo">
+                            <div class="photo-caption">La energía positiva captada por nuestros fotógrafos.</div>
+                        </div>
+                    </div>
+
+                    <!-- Columna Central (FOTO PRINCIPAL GIGANTE + Texto core) -->
+                    <div class="border-right-news flex flex-col items-center">
+                        
+                        <!-- Foto Principal -->
+                        <div class="prophet-photo-frame main-photo-frame">
+                            <img src="https://i.postimg.cc/pLT4GGbj/Whats-App-Image-2026-05-10-at-12-59-07-PM.jpg" alt="Sujeto de la investigación" class="prophet-photo main-photo">
+                            <div class="photo-caption text-base">
+                                EXCLUSIVA: La cumpleañera en cuestión, demostrando que su espectacular belleza y carisma superan cualquier encantamiento conocido.
+                            </div>
+                        </div>
+
+                        <div class="prophet-text w-full mt-4">
+                            <div class="quote-box">
+                                "Tiene el extraño y maravilloso poder de hacer que los problemas parezcan más pequeños."
+                            </div>
+                            <p>
+                                Fuentes cercanas a ella reportan que su buena vibra, su increíble sentido del humor y su innegable belleza no requieren del uso de varitas, pociones ni encantamientos embrujados.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Columna Derecha (Foto secundaria 2 + Conclusión) -->
+                    <div class="border-left-news prophet-text">
+                        <!-- Foto Complementaria 2 -->
+                        <div class="prophet-photo-frame side-photo-frame mb-6">
+                            <img src="https://i.postimg.cc/prWq9rPF/Whats-App-Image-2026-05-10-at-12-59-07-PM-(3).jpg" alt="Registro Mágico" class="prophet-photo side-photo">
+                            <div class="photo-caption">Imposible no sonreír ante su presencia.</div>
+                        </div>
+
+                        <p>
+                            "Simplemente es ella", mencionó una fuente anónima muy afortunada, quien quiso dejar en claro su inmensa admiración y lo mucho que la quiere. "Es un tesoro poder contar con alguien tan auténtica y leal en tu vida. De verdad, cambia los días de quienes la rodean".
+                        </p>
+                        <p>
+                            El Ministro de Magia recomendó encarecidamente que hoy sea celebrada a lo grande. ¡Feliz Cumpleaños!
+                        </p>
+                    </div>
+
+                </div> <!-- Fin Grid -->
+            </div>
+        </section>
+
+        <!-- Transition Button (Lumos Maxima) - HIGHLIGHTED -->
+        <div class="flex justify-center mb-32 z-20 slide-up" style="animation-delay: 1.4s;">
+            <div class="lumos-wrapper">
+                <div class="lumos-aura"></div>
+                <div class="lumos-instruction">
+                    Enciende la luz para revelar lo que aún me falta por decirte...
+                </div>
+                
+                <button onclick="castLumos()" class="group relative px-10 py-5 bg-hp-blue border-2 border-hp-gold rounded-full font-cinzel text-hp-gold text-2xl hover:bg-hp-gold hover:text-hp-dark transition-all duration-500 overflow-hidden shadow-[0_0_30px_rgba(212,175,55,0.6)] hover:shadow-[0_0_50px_rgba(212,175,55,1)] transform hover:scale-105">
+                    <span class="relative z-10 flex items-center space-x-3">
+                        <i class="fas fa-wand-magic-sparkles text-3xl"></i>
+                        <span class="font-bold tracking-wider">Lumos Maxima</span>
+                    </span>
+                    <div class="absolute inset-0 h-full w-0 bg-hp-gold transition-all duration-500 ease-out group-hover:w-full z-0"></div>
+                </button>
+            </div>
+        </div>
+
+        <!-- The Emotional Letter (Hidden initially, revealed by Lumos) -->
+        <section id="the-letter" class="hidden opacity-0 max-w-3xl mx-auto mb-20 relative z-20">
+            <div class="parchment p-8 md:p-16 rounded-sm">
+                <div class="absolute top-4 left-4 text-3xl opacity-30"><i class="fas fa-feather-alt"></i></div>
+                <div class="absolute bottom-4 right-4 text-3xl opacity-30"><i class="fas fa-hat-wizard"></i></div>
+                
+                <h3 class="text-3xl md:text-4xl font-cinzel text-center mb-8 text-hp-red font-bold">Para alguien extraordinariamente especial,</h3>
+                
+                <div class="font-garamond text-xl md:text-2xl leading-relaxed space-y-6 text-gray-800">
+                    <p>
+                        He buscado en la Sección Prohibida, he consultado a los cuadros de Hogwarts y he mirado en las profundidades del Espejo de Oesed, buscando las palabras exactas para decirte lo mucho que te valoro y lo importante que te has vuelto para mí.
+                    </p>
+                    <p>
+                        Si el Sombrero Seleccionador pudiera ver en tu mente y en tu corazón, sabría de inmediato que tienes la valentía inquebrantable de Gryffindor, la lealtad y la bondad inmensa de Hufflepuff que le regalas a los demás, la brillante inteligencia de Ravenclaw, y la determinación absoluta de Slytherin para lograr todo lo que te propones. Eres la mezcla perfecta. Eres magia pura.
+                    </p>
+                    <p>
+                        Conocerte ha sido como encontrar una poción <em>Felix Felicis</em>; de verdad me siento afortunado de tenerte en mi vida. Tienes esa rara habilidad de convertir un día ordinario en algo asombroso con tu carisma. Cuando las cosas se complican o los días son grises, tu compañía, escucharte hablar y el simple hecho de que seas tú, son para mí como el mejor de los <em>Patronus</em>, alejando cualquier sombra y llenándolo todo de luz.
+                    </p>
+                    <p>
+                        Hoy celebro tu vida. Celebro cada una de las cualidades que leíste arriba, porque todas ellas juntas forman a esa persona tan auténtica y maravillosa que admiro muchísimo. Que este nuevo año de vida te traiga tantas alegrías como estrellas hay en el Gran Comedor, que cumplas todas tus metas, y que nunca, nunca dejes de brillar con esa esencia que te caracteriza.
+                    </p>
+                    <p>
+                        Gracias por permitirme compartir tiempo contigo, por ir conmigo, por esas charlas profundas en la madrugada que valoro tanto, y por regalarme tu sinceridad. Quiero que hoy te sientas inmensamente querida, porque lo vales. Espero que te emociones, pero de pura felicidad, al darte cuenta de lo increíble que eres.
+                    </p>
+                    <p class="font-vibes text-3xl md:text-4xl mt-12 text-center text-hp-red">
+                        Te quiero muchísimo. Feliz Cumpleaños.
+                    </p>
+                    <div class="text-center mt-8 font-cinzel font-bold">
+                        <p class="text-lg">Y si me preguntan si me alegra que nuestros caminos se cruzaran...</p>
+                        <p class="text-2xl mt-2 italic">Siempre.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // The 36 Qualities requested
+        const qualities = [
+            "Tus ojos", "Tu cabello", "Tu sonrisa", "Tu inteligencia", 
+            "Tu forma de ser", "La manera en que piensas", "Tu risa", "Tu amabilidad", 
+            "Tu honestidad", "Tu lealtad", "Tu voz", "Tu compresión", 
+            "Tu humildad", "Tu carácter", "Cómo te vistes", "Tu sentido del humor", 
+            "Tu pasión por hacer las cosas", "Tu compañía por ir conmigo", "Tu alegría", "Tu belleza", 
+            "Tu sencillez", "Tu cariño", "Lo maravillosa que eres", "Lo asombrosa que eres", 
+            "Tu carisma", "Tu amistad", "Tu compañía", "La forma en que hablas", 
+            "Tu manera de escuchar", "Tu belleza interna y exterior", "Tu seriedad", "Tímida", 
+            "Lo determinada que eres", "Lo auténtica que eres", "Las charlas profundas en la madrugada", "El simple hecho de que seas tú"
+        ];
+
+        // Magical Icons for the front of the cards
+        const icons = [
+            "fa-hat-wizard", "fa-star", "fa-bolt", "fa-moon", "fa-feather", 
+            "fa-quidditch", "fa-book-journal-whills", "fa-wand-magic-sparkles", "fa-gem", "fa-crow",
+            "fa-hourglass-half", "fa-key", "fa-ring", "fa-scroll", "fa-eye"
+        ];
+
+        // Special Owl Notes Array
+        const specialNotes = [
+            "Eres el tipo de persona que hace que los días más grises tengan color. Gracias por esa energía tuya.",
+            "Gracias por ser un lugar seguro. Por esas pláticas donde puedo ser yo mismo sin filtros.",
+            "El mundo es un lugar mucho mejor, más amable y divertido desde que tú estás en él.",
+            "Tienes una luz propia que nadie te puede apagar. Prométeme que nunca vas a dejar de brillar.",
+            "Admiro profundamente tu fuerza. Eres capaz de superar cualquier obstáculo que se ponga en tu camino.",
+            "Me encanta tu sentido del humor y cómo una simple sonrisa tuya puede arreglar un mal día.",
+            "Siempre tendrás mi apoyo. En los días buenos para celebrar, y en los malos para ayudarte a conjurar un Patronus.",
+            "Tu amistad es genuina, y en estos tiempos, encontrar a alguien tan auténtica como tú es encontrar un tesoro.",
+            "Haces que el tiempo vuele. Las horas parecen minutos cuando estamos hablando o compartiendo juntos.",
+            "Gracias por existir y por permitirme coincidir en esta vida contigo. Eres un regalo para quienes te rodean.",
+            "Nunca dudes de lo increíble que eres y de todo el potencial que tienes para lograr tus sueños.",
+            "Te mereces todo lo bonito que te pase hoy y siempre. Feliz cumpleaños a alguien que simplemente, lo vale todo."
+        ];
+
+        // Create Starry Background
+        function createStars() {
+            const sky = document.getElementById('sky');
+            const numStars = 150;
+            
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                const xy = randomPosition();
+                star.style.top = xy[0] + 'vh';
+                star.style.left = xy[1] + 'vw';
+                star.style.width = Math.random() * 3 + 'px';
+                star.style.height = star.style.width;
+                star.style.animationDuration = (Math.random() * 3 + 1) + 's';
+                star.style.animationDelay = (Math.random() * 2) + 's';
+                sky.appendChild(star);
+            }
+        }
+
+        // Create Floating Candles
+        function createCandles() {
+            const sky = document.getElementById('sky');
+            const numCandles = 25; 
+            
+            for (let i = 0; i < numCandles; i++) {
+                const candleContainer = document.createElement('div');
+                candleContainer.style.position = 'absolute';
+                const xy = randomPosition();
+                candleContainer.style.top = (Math.random() * 80) + 'vh';
+                candleContainer.style.left = xy[1] + 'vw';
+                candleContainer.style.animation = `floatCandle ${Math.random() * 3 + 3}s infinite alternate ease-in-out`;
+                candleContainer.style.animationDelay = (Math.random() * 5) + 's';
+                candleContainer.style.zIndex = '0';
+
+                const candle = document.createElement('div');
+                candle.className = 'candle';
+                
+                const flame = document.createElement('div');
+                flame.className = 'flame';
+                
+                candle.appendChild(flame);
+                candleContainer.appendChild(candle);
+                sky.appendChild(candleContainer);
+            }
+        }
+
+        function randomPosition() {
+            return [Math.floor(Math.random() * 100), Math.floor(Math.random() * 100)];
+        }
+
+        // Generate Photocards
+        function generateCards() {
+            const grid = document.getElementById('photocards-grid');
+            
+            qualities.forEach((quality, index) => {
+                const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+                const delay = (index * 0.05).toFixed(2);
+                
+                const cardHTML = `
+                    <div class="card-container slide-up opacity-0" style="animation-delay: ${delay}s; animation-fill-mode: forwards;">
+                        <div class="magic-card">
+                            <div class="card-front">
+                                <div class="card-corner tl"></div><div class="card-corner tr"></div>
+                                <div class="card-corner bl"></div><div class="card-corner br"></div>
+                                <i class="fas ${randomIcon} text-2xl text-hp-gold mb-2 opacity-80"></i>
+                                <span class="font-cinzel text-xs text-hp-gold-light uppercase tracking-widest mt-2">Revelar</span>
+                            </div>
+                            <div class="card-back">
+                                <div class="card-corner tl"></div><div class="card-corner tr"></div>
+                                <div class="card-corner bl"></div><div class="card-corner br"></div>
+                                <p class="font-vibes text-2xl md:text-3xl text-hp-gold-light leading-tight glow-text px-2">
+                                    ${quality}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += cardHTML;
+            });
+        }
+
+        // Generate Owl Notes
+        function generateNotes() {
+            const grid = document.getElementById('notes-grid');
+            
+            specialNotes.forEach((note, index) => {
+                const rotation = (Math.random() * 6 - 3).toFixed(1); 
+                const delay = (index * 0.1).toFixed(2);
+                
+                const noteHTML = `
+                    <div class="slide-up opacity-0" style="animation-delay: ${delay}s; animation-fill-mode: forwards;">
+                        <div class="parchment p-6 md:p-8 rounded-md transition-transform duration-300 hover:scale-105 h-full flex flex-col justify-center relative cursor-default" 
+                             style="transform: rotate(${rotation}deg);">
+                            <div class="absolute top-3 right-4 text-hp-red opacity-30 text-xl"><i class="fas fa-scroll"></i></div>
+                            <div class="flex justify-center mb-4 text-hp-red opacity-80 text-2xl"><i class="fas fa-envelope-open-text"></i></div>
+                            <p class="font-garamond text-xl md:text-2xl text-center text-gray-800 leading-relaxed italic">
+                                "${note}"
+                            </p>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += noteHTML;
+            });
+        }
+
+        // Open Envelope logic
+        function openMagic() {
+            const audio = document.getElementById('magic-audio');
+            audio.volume = 0.5;
+            audio.play().catch(e => console.log("Audio prevented by browser policy", e));
+
+            const overlay = document.getElementById('entrance-overlay');
+            const mainContent = document.getElementById('main-content');
+            
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                mainContent.classList.remove('hidden');
+                void mainContent.offsetWidth;
+                mainContent.classList.add('fade-in');
+            }, 2000);
+        }
+
+        // Lumos Effect
+        function castLumos() {
+            const overlay = document.getElementById('lumos-overlay');
+            const letter = document.getElementById('the-letter');
+            // Buscamos el contenedor 'lumos-wrapper' para ocultarlo entero
+            const btnWrapper = document.querySelector('.lumos-wrapper');
+
+            overlay.style.opacity = '1';
+            
+            setTimeout(() => {
+                letter.classList.remove('hidden');
+                letter.classList.add('slide-up');
+                btnWrapper.style.display = 'none';
+                
+                setTimeout(() => {
+                    overlay.style.opacity = '0';
+                    letter.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 1000);
+            }, 1000);
+        }
+
+        // Download HTML logic
+        function downloadHTML() {
+            fetch(window.location.href)
+                .then(response => response.text())
+                .then(htmlContent => {
+                    const blob = new Blob([htmlContent], { type: "text/html" });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = "Feliz_Cumpleanos_J.html";
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                })
+                .catch(err => {
+                    const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+                    const blob = new Blob([htmlContent], { type: "text/html" });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = "Feliz_Cumpleanos_J.html";
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                });
+        }
+
+        // Initialization
+        window.onload = () => {
+            createStars();
+            createCandles();
+            generateCards();
+            generateNotes();
+        };
+    </script>
+</body>
+</html>
